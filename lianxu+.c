@@ -20,15 +20,18 @@ int StringFind(const char *pSrc, const char *pDst)
     return -1;  
 }  
 int main()  
-{  printf("请先修改文件路径！！\n")  ;
+{  //printf("请先修改文件路径！！\n")  ;
  char name[6];FILE *fptr = fopen("连续情况.txt", "w");
-while(printf("请输入要统计的数据名(区分大小写  输入ctrl+Z结束程序)\n")&&scanf("%s",name)!=EOF)
-{   int choice; 
-    printf("请问是否需要该数据连续的具体情况，如果是请输入1,如只需简略情况请输入2\n");
-    scanf("%d",&choice);int adr1,adr2,adrs;
+//while(printf("请输入要统计的数据名(区分大小写  输入ctrl+Z结束程序)\n")&&scanf("%s",name)!=EOF)
+  //int choice; 
+    //printf("请问是否需要该数据连续的具体情况，如果是请输入1,如只需简略情况请输入2\n");
+    //scanf("%d",&choice);
+	int adr1,adr2,adrs;
     long a[30000][4],tem;int count=0,num1=0,loc1,grop1[50000][3],time1=0,num2=0,time2=0,loc2,grop2[50000][2],count2=0,b[30000],i,j;//a[][]第一列存核的序号，第二列存typ，第三列存adr 
     char szTest[1000] = {0};  char typ[50],adr[10];
-    int len = 0;                                                             //          //                                                                     //     //     //       // 
+    int len = 0;
+	printf("请输入要统计的数据名(区分大小写\n");
+	scanf("%s",name);                                                             //          //                                                                     //     //     //       // 
     FILE *fp = fopen("text.txt", "r");  //在这里修改文件路径！！！！ // 
     
 	if(NULL == fp)                                                    //                          // 
@@ -139,7 +142,7 @@ while(printf("请输入要统计的数据名(区分大小写  输入ctrl+Z结束程序)\n")&&scanf("%
 	}
 	
 	fprintf(fptr,"共出现了%d次连续相同的%s\n****************************我是分割线*****************************\n\n",time1,name);
-if(choice==1)	
+//if(choice==1)	
     
 	{
 	for(count=1;count<=time1;count++)
@@ -151,7 +154,7 @@ if(choice==1)
 	fclose(fp); 
  //     for(i=0;i<num1;i++)
 //	  fprintf(fptr,"%d\  \n",a[i][2]);
-}	
+	
     fclose(fptr);
     return 0;  
     
