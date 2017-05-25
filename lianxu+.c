@@ -1,5 +1,7 @@
-#include <stdio.h>  //33行修改文件路径 
-#include <string.h>  
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+typedef int MyType ;
 int StringFind(const char *pSrc, const char *pDst)  
 {  
     int i, j;  
@@ -20,18 +22,54 @@ int StringFind(const char *pSrc, const char *pDst)
     return -1;  
 }  
 int main()  
-{  //printf("请先修改文件路径！！\n")  ;
- char name[6];FILE *fptr = fopen("连续情况.txt", "w");
-//while(printf("请输入要统计的数据名(区分大小写  输入ctrl+Z结束程序)\n")&&scanf("%s",name)!=EOF)
-  //int choice; 
-    //printf("请问是否需要该数据连续的具体情况，如果是请输入1,如只需简略情况请输入2\n");
-    //scanf("%d",&choice);
-	int adr1,adr2,adrs;
-    long a[30000][4],tem;int count=0,num1=0,loc1,grop1[50000][3],time1=0,num2=0,time2=0,loc2,grop2[50000][2],count2=0,b[30000],i,j;//a[][]第一列存核的序号，第二列存typ，第三列存adr 
-    char szTest[1000] = {0};  char typ[50],adr[10];
-    int len = 0;
-	printf("请输入要统计的数据名(区分大小写\n");
-	scanf("%s",name);                                                             //          //                                                                     //     //     //       // 
+{ 
+
+
+	long row = 300000000;/////暂假定行数是2，这个可以在运行时刻决定；
+    long column = 4;/////暂假定列数是2，这个可以在运行时刻决定；
+ void **ptdhead = NULL;//////////在后面说明为什么要用void**类型
+ void **ptdBody = NULL;//////////在后面说明为什么要用void**类型
+ ptdhead = (void **)malloc(sizeof(void*)*row + sizeof(MyType)*row*column);
+
+ ptdBody = ptdhead + row ;
+
+long ncount;
+ for( ncount = 0; ncount < row; ncount++)
+ ptdhead[ncount] = ptdBody + ncount * column* sizeof(MyType)/sizeof(void*);
+ MyType**a;
+ a = (MyType**)ptdhead;///////////////////强制转换为自己程序需要的二维数组元素类型的指针
+ ptdhead = NULL;
+ 
+ 
+ 	 row = 10000000;/////暂假定行数是2，这个可以在运行时刻决定；
+     column = 4;/////暂假定列数是2，这个可以在运行时刻决定；
+ //////////在后面说明为什么要用void**类型
+ ptdhead = (void **)malloc(sizeof(void*)*row + sizeof(MyType)*row*column);
+
+ ptdBody = ptdhead + row ;
+
+
+ for( ncount = 0; ncount < row; ncount++)
+ ptdhead[ncount] = ptdBody + ncount * column* sizeof(MyType)/sizeof(void*);
+ MyType**grop1;
+ grop1 = (MyType**)ptdhead;///////////////////强制转换为自己程序需要的二维数组元素类型的指针
+ ptdhead = NULL;
+ 
+ 
+	long i,j; 
+
+ char name[6]="SRC";FILE *fptr = fopen("DATA_condition.txt", "w");
+  printf("请输入要统计的数据 （SRC/DST）\n");
+  scanf("%s",name) ;
+  int choice=1; 
+    
+    int adr1,adr2,adrs;
+    long tem;long count=0,num1=0,loc1,time1=0,num2=0,time2=0,loc2,count2=0;//a[][]第一列存核的序号，第二列存typ，第三列存adr 
+   
+   
+    
+	char szTest[1000] = {0};  char typ[50],adr[10];
+    int len = 0;                                                             //          //                                                                     //     //     //       // 
     FILE *fp = fopen("text.txt", "r");  //在这里修改文件路径！！！！ // 
     
 	if(NULL == fp)                                                    //                          // 
@@ -142,7 +180,7 @@ int main()
 	}
 	
 	fprintf(fptr,"共出现了%d次连续相同的%s\n****************************我是分割线*****************************\n\n",time1,name);
-//if(choice==1)	
+if(choice==1)	
     
 	{
 	for(count=1;count<=time1;count++)
